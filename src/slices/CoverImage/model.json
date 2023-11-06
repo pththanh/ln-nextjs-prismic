@@ -1,0 +1,55 @@
+{
+  "id": "cover_image",
+  "type": "SharedSlice",
+  "name": "CoverImage",
+  "description": "CoverImage",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "main_image": {
+          "type": "Image",
+          "config": {
+            "label": "Main Image",
+            "constraint": {
+              "width": 1920,
+              "height": 1080
+            },
+            "thumbnails": [
+              {
+                "name": "Desktop Mid",
+                "width": 1440,
+                "height": 960
+              },
+              {
+                "name": "Mobile",
+                "width": 375,
+                "height": 600
+              }
+            ]
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

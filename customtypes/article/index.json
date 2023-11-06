@@ -1,0 +1,77 @@
+{
+  "id": "article",
+  "label": "Article",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "article_image": {
+        "type": "Image",
+        "config": {
+          "label": "Article Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "article_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Article Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "author_link": {
+        "type": "Link",
+        "config": {
+          "label": "Author Link",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "created_date": {
+        "type": "Date",
+        "config": {
+          "label": "Created Date",
+          "placeholder": ""
+        }
+      },
+      "type": {
+        "type": "Link",
+        "config": {
+          "label": "Type",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "content": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Summary Content",
+          "placeholder": "Use this field to provide brief information about the article",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "sepcial_article": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

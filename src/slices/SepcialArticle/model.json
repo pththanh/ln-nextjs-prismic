@@ -1,0 +1,16 @@
+{
+  "id": "sepcial_article",
+  "type": "SharedSlice",
+  "name": "SepcialArticle",
+  "description": "SepcialArticle",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}
