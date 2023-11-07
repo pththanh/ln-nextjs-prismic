@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ArticleDocumentDataSlicesSlice = SepcialArticleSlice;
+type ArticleDocumentDataSlicesSlice = never;
 
 /**
  * Content for Article documents
@@ -20,17 +20,6 @@ interface ArticleDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   article_image: prismic.ImageField<never>;
-
-  /**
-   * Article Title field in *Article*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: article.article_title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  article_title: prismic.RichTextField;
 
   /**
    * Author Link field in *Article*
@@ -66,15 +55,48 @@ interface ArticleDocumentData {
   type: prismic.LinkField;
 
   /**
+   * Article Title field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.article_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  article_title: prismic.KeyTextField;
+
+  /**
    * Summary Content field in *Article*
    *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Use this field to provide brief information about the article
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
    * - **API ID Path**: article.content
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  content: prismic.RichTextField;
+  content: prismic.KeyTextField;
+
+  /**
+   * Article Link field in *Article*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link to other website instead of UID
+   * - **API ID Path**: article.article_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  article_link: prismic.LinkField;
+
+  /**
+   * Time To Read field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.time_to_read
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  time_to_read: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Article*
@@ -318,6 +340,17 @@ interface HomeDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   introduce_text: prismic.RichTextField;
+
+  /**
+   * Background Color field in *Home*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.background_color
+   * - **Tab**: Introduce
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
 }
 
 /**
@@ -528,6 +561,16 @@ export interface CoverImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   description: prismic.KeyTextField;
+
+  /**
+   * Color field in *CoverImage → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cover_image.primary.color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  color: prismic.ColorField;
 }
 
 /**

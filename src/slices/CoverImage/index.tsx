@@ -1,10 +1,7 @@
 import { Content } from "@prismicio/client";
-import {
-  PrismicImage,
-  PrismicText,
-  SliceComponentProps,
-} from "@prismicio/react";
+import { PrismicImage, SliceComponentProps } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
+import clsx from "clsx";
 
 /**
  * Props for `CoverImage`.
@@ -28,7 +25,10 @@ const CoverImage = ({ slice }: CoverImageProps): JSX.Element => {
             className="absolute top-0 left-0 h-full	w-full object-cover"
           />
         )}
-        <div className="absolute top-1/2 left-1/2 w-3/4 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <div
+          className="absolute top-1/2 left-1/2 w-3/4 transform -translate-x-1/2 -translate-y-1/2 text-center"
+          style={{ color: slice.primary.color || "#fff" }}
+        >
           {prismic.isFilled.keyText(slice.primary.title) && (
             <h2 className="text-5xl font-bold	tracking-wide">
               {slice.primary.title}

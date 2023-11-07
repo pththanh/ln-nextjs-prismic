@@ -1,28 +1,41 @@
 import { createClient } from "@/prismicio";
-import { PrismicImage } from "@prismicio/react";
+import { PrismicImage, PrismicRichText } from "@prismicio/react";
 import { notFound } from "next/navigation";
 import * as prismic from "@prismicio/client";
 import React from "react";
-import { Heading } from "@/components/Heading";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import ArticleCard from "@/components/ArticleCard";
-import { PrismicRichText } from "@/components/PrismicRichText";
+import { Heading } from "@/components/Heading";
 
 type IntroduceProps = {
   image: prismic.ImageField;
   text: prismic.RichTextField;
+  bgColor?: prismic.ColorField;
 };
 
-const Introduce = ({ image, text }: IntroduceProps) => {
+const Introduce = ({ image, text, bgColor }: IntroduceProps) => {
   return (
-    <section className="flex py-10 w-3/4 items-center mx-auto">
-      <div className="w-1/2">
+    <section
+      className="flex my-20 w-4/5 items-center mx-auto"
+      style={{ backgroundColor: bgColor ?? "" }}
+    >
+      <div className="w-3/5">
         <PrismicImage field={image} />
       </div>
-      <div className="w-1/2">
+      <div className="w-2/5 text-center">
         {prismic.isFilled.richText(text) && (
-          <PrismicRichText field={text} className="text-center" />
+          <PrismicRichText
+            field={text}
+            components={{
+              heading2: ({ children }) => (
+                <Heading as="h2" className="mb-6">
+                  {children}
+                </Heading>
+              ),
+              paragraph: ({ children }) => <p className="px-5">{children}</p>,
+            }}
+          />
         )}
       </div>
     </section>
@@ -45,7 +58,7 @@ export default async function Page({ params }: { params: { lang: string } }) {
 
   console.log({
     articles,
-    article: articles[1].tags,
+    article: articles[3].data,
   });
   return (
     <>
@@ -53,8 +66,9 @@ export default async function Page({ params }: { params: { lang: string } }) {
       <Introduce
         image={home.data.introduce_image}
         text={home.data.introduce_text}
+        bgColor={home.data.background_color}
       />
-      <div className="grid grid-cols-2 gap-2 mx-10">
+      <div className="grid grid-cols-2 gap-2 mx-10 2xl:grid-cols-3 2xl:gap-5">
         {articles?.map((item, index) => (
           <ArticleCard
             type={item.data.type.link_type}
@@ -65,6 +79,10 @@ export default async function Page({ params }: { params: { lang: string } }) {
             content={item.data.content}
             authorImage={item.data.author_link.data.author_image}
             authorName={item.data.author_link.data.author_name}
+            timeToRead={item.data.time_to_read}
+            href={item}
+            externalHref={item.data.article_link}
+            isExternalHref={item.data.article_link.link_type === "Web"}
             key={index}
           />
         ))}

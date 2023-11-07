@@ -4,7 +4,6 @@
 		"variation": "default",
 		"primary": {
 			"main_image": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1",
@@ -22,6 +21,9 @@
 					},
 					"background": "transparent"
 				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {
 					"Desktop Mid": {
 						"origin": {
@@ -40,7 +42,9 @@
 								"y": 576
 							},
 							"background": "transparent"
-						}
+						},
+						"credits": null,
+						"alt": null
 					},
 					"Mobile": {
 						"origin": {
@@ -59,7 +63,9 @@
 								"y": 0
 							},
 							"background": "transparent"
-						}
+						},
+						"credits": null,
+						"alt": null
 					}
 				}
 			},
@@ -72,6 +78,11 @@
 				"__TYPE__": "FieldContent",
 				"type": "Text",
 				"value": "Pham Truong Hoai Thanh"
+			},
+			"color": {
+				"__TYPE__": "FieldContent",
+				"value": "#67186d",
+				"type": "Color"
 			}
 		},
 		"items": []
