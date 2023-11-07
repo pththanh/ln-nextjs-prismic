@@ -6,11 +6,11 @@ type BadgeProps = {
 
 function Badge({ tags }: BadgeProps) {
   return (
-    <div className="flex gap-5 items-center">
+    <div className="flex gap-1 items-center">
       {tags?.map((item, index) => (
         <div
           key={index}
-          className="py-[3px] px-[10px] rounded-[30px] border-2 border-soli	border-slate-200 text-white bg-black"
+          className="text-white bg-black text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
         >
           {item}
         </div>

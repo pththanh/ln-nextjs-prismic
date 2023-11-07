@@ -47,6 +47,13 @@
             "label": "Description",
             "placeholder": ""
           }
+        },
+        "color": {
+          "type": "Color",
+          "config": {
+            "label": "Color",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

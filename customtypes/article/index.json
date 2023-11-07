@@ -20,15 +20,6 @@
           "thumbnails": []
         }
       },
-      "article_title": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Article Title",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-        }
-      },
       "author_link": {
         "type": "Link",
         "config": {
@@ -52,24 +43,41 @@
           "select": null
         }
       },
+      "article_title": {
+        "type": "Text",
+        "config": {
+          "label": "Article Title",
+          "placeholder": ""
+        }
+      },
       "content": {
-        "type": "StructuredText",
+        "type": "Text",
         "config": {
           "label": "Summary Content",
-          "placeholder": "Use this field to provide brief information about the article",
+          "placeholder": ""
+        }
+      },
+      "article_link": {
+        "type": "Link",
+        "config": {
+          "label": "Article Link",
+          "placeholder": "Link to other website instead of UID",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          "select": null
+        }
+      },
+      "time_to_read": {
+        "type": "Text",
+        "config": {
+          "label": "Time To Read",
+          "placeholder": ""
         }
       },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "sepcial_article": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     }
