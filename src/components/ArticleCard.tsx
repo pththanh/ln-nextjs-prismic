@@ -3,10 +3,11 @@ import React from "react";
 import Badge from "./Badge";
 import { DateField, KeyTextField, LinkField } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
-import Link from "next/link";
+import Author from "./Author";
+import ArticleType from "./ArticleType";
 
 type ArticleCardProps = {
-  type?: string;
+  type?: any;
   title: KeyTextField;
   createdAt?: DateField | string;
   image?: any;
@@ -52,9 +53,10 @@ const ArticleCard = ({
             />
           </PrismicNextLink>
         )}
-        <div className="absolute bottom-0 left-0 py-2 px-6 bg-black text-white">
-          {type}
-        </div>
+        <ArticleType
+          type={type?.data.type}
+          className="absolute bottom-0 left-0"
+        />
       </div>
       <div className="flex flex-col justify-between h-full p-5">
         <div>
@@ -72,15 +74,10 @@ const ArticleCard = ({
         <p className="line-clamp-4 my-7 h-full">{content}</p>
         <div>
           <Badge tags={tags} />
-          <div className="flex gap-2 justify-start items-center mt-5">
-            <div className="w-[50px] h-[50px] rounded-[50%] overflow-hidden">
-              <PrismicImage
-                field={authorImage}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <p>{authorName}</p>
-          </div>
+          <Author
+            image={authorImage.data.author_image}
+            name={authorName.data.author_name}
+          />
         </div>
       </div>
     </div>

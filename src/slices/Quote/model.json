@@ -1,0 +1,88 @@
+{
+  "id": "quote",
+  "type": "SharedSlice",
+  "name": "Quote",
+  "description": "Quote",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content": {
+          "type": "Text",
+          "config": {
+            "label": "Content",
+            "placeholder": "Use this field to provide content of this quote"
+          }
+        },
+        "author_name": {
+          "type": "Text",
+          "config": {
+            "label": "Author Name",
+            "placeholder": ""
+          }
+        },
+        "author_job_position": {
+          "type": "Text",
+          "config": {
+            "label": "Author Job Position",
+            "placeholder": ""
+          }
+        },
+        "author_image": {
+          "type": "Image",
+          "config": {
+            "label": "Author Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "quoteWithoutIcon",
+      "name": "Quote - Without Icon",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content": {
+          "type": "Text",
+          "config": {
+            "label": "Content",
+            "placeholder": "Use this field to provide content of this quote"
+          }
+        },
+        "author_name": {
+          "type": "Text",
+          "config": {
+            "label": "Author Name",
+            "placeholder": ""
+          }
+        },
+        "author_job_position": {
+          "type": "Text",
+          "config": {
+            "label": "Author Job Position",
+            "placeholder": ""
+          }
+        },
+        "author_image": {
+          "type": "Image",
+          "config": {
+            "label": "Author Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
