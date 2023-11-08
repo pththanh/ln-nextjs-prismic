@@ -56,10 +56,6 @@ export default async function Page({ params }: { params: { lang: string } }) {
     ],
   });
 
-  console.log({
-    articles,
-    article: articles[3].data,
-  });
   return (
     <>
       <SliceZone slices={home.data.slices} components={components} />
@@ -71,14 +67,14 @@ export default async function Page({ params }: { params: { lang: string } }) {
       <div className="grid grid-cols-2 gap-2 mx-10 2xl:grid-cols-3 2xl:gap-5">
         {articles?.map((item, index) => (
           <ArticleCard
-            type={item.data.type.link_type}
+            type={item.data.type}
             title={item.data.article_title}
             image={item.data.article_image}
             createdAt={item.data.created_date}
             tags={item.tags}
             content={item.data.content}
-            authorImage={item.data.author_link.data.author_image}
-            authorName={item.data.author_link.data.author_name}
+            authorImage={item.data.author_link}
+            authorName={item.data.author_link}
             timeToRead={item.data.time_to_read}
             href={item}
             externalHref={item.data.article_link}

@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ArticleDocumentDataSlicesSlice = never;
+type ArticleDocumentDataSlicesSlice = ArticleImageSlice | QuoteSlice;
 
 /**
  * Content for Article documents
@@ -529,6 +529,61 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Primary content in *ArticleImage → Primary*
+ */
+export interface ArticleImageSliceDefaultPrimary {
+  /**
+   * Article Image field in *ArticleImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article_image.primary.article_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  article_image: prismic.ImageField<never>;
+
+  /**
+   * Image Caption field in *ArticleImage → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article_image.primary.image_caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  image_caption: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ArticleImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArticleImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ArticleImage*
+ */
+type ArticleImageSliceVariation = ArticleImageSliceDefault;
+
+/**
+ * ArticleImage Shared Slice
+ *
+ * - **API ID**: `article_image`
+ * - **Description**: ArticleImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleImageSlice = prismic.SharedSlice<
+  "article_image",
+  ArticleImageSliceVariation
+>;
+
+/**
  * Primary content in *CoverImage → Primary*
  */
 export interface CoverImageSliceDefaultPrimary {
@@ -604,34 +659,176 @@ export type CoverImageSlice = prismic.SharedSlice<
 >;
 
 /**
- * Default variation for SepcialArticle Slice
+ * Primary content in *Quote → Primary*
+ */
+export interface QuoteSliceDefaultPrimary {
+  /**
+   * Content field in *Quote → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Use this field to provide content of this quote
+   * - **API ID Path**: quote.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * Author Name field in *Quote → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote.primary.author_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author_name: prismic.KeyTextField;
+
+  /**
+   * Author Job Position field in *Quote → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote.primary.author_job_position
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author_job_position: prismic.KeyTextField;
+
+  /**
+   * Author Image field in *Quote → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote.primary.author_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  author_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Quote Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type SepcialArticleSliceDefault = prismic.SharedSliceVariation<
+export type QuoteSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<QuoteSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *SepcialArticle*
+ * Primary content in *Quote → Primary*
  */
-type SepcialArticleSliceVariation = SepcialArticleSliceDefault;
+export interface QuoteSliceQuoteWithoutIconPrimary {
+  /**
+   * Content field in *Quote → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Use this field to provide content of this quote
+   * - **API ID Path**: quote.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  content: prismic.KeyTextField;
+
+  /**
+   * Author Name field in *Quote → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote.primary.author_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author_name: prismic.KeyTextField;
+
+  /**
+   * Author Job Position field in *Quote → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote.primary.author_job_position
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author_job_position: prismic.KeyTextField;
+
+  /**
+   * Author Image field in *Quote → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote.primary.author_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  author_image: prismic.ImageField<never>;
+}
 
 /**
- * SepcialArticle Shared Slice
+ * Quote - Without Icon variation for Quote Slice
  *
- * - **API ID**: `sepcial_article`
- * - **Description**: SepcialArticle
+ * - **API ID**: `quoteWithoutIcon`
+ * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type SepcialArticleSlice = prismic.SharedSlice<
-  "sepcial_article",
-  SepcialArticleSliceVariation
+export type QuoteSliceQuoteWithoutIcon = prismic.SharedSliceVariation<
+  "quoteWithoutIcon",
+  Simplify<QuoteSliceQuoteWithoutIconPrimary>,
+  never
 >;
+
+/**
+ * Slice variation for *Quote*
+ */
+type QuoteSliceVariation = QuoteSliceDefault | QuoteSliceQuoteWithoutIcon;
+
+/**
+ * Quote Shared Slice
+ *
+ * - **API ID**: `quote`
+ * - **Description**: Quote
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type QuoteSlice = prismic.SharedSlice<"quote", QuoteSliceVariation>;
+
+/**
+ * Primary content in *Text → Primary*
+ */
+export interface TextSliceDefaultPrimary {
+  /**
+   * Text field in *Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Text Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TextSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Text*
+ */
+type TextSliceVariation = TextSliceDefault;
+
+/**
+ * Text Shared Slice
+ *
+ * - **API ID**: `text`
+ * - **Description**: Text
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSlice = prismic.SharedSlice<"text", TextSliceVariation>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -662,13 +859,24 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       AllDocumentTypes,
+      ArticleImageSlice,
+      ArticleImageSliceDefaultPrimary,
+      ArticleImageSliceVariation,
+      ArticleImageSliceDefault,
       CoverImageSlice,
       CoverImageSliceDefaultPrimary,
       CoverImageSliceVariation,
       CoverImageSliceDefault,
-      SepcialArticleSlice,
-      SepcialArticleSliceVariation,
-      SepcialArticleSliceDefault,
+      QuoteSlice,
+      QuoteSliceDefaultPrimary,
+      QuoteSliceQuoteWithoutIconPrimary,
+      QuoteSliceVariation,
+      QuoteSliceDefault,
+      QuoteSliceQuoteWithoutIcon,
+      TextSlice,
+      TextSliceDefaultPrimary,
+      TextSliceVariation,
+      TextSliceDefault,
     };
   }
 }
