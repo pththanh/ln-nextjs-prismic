@@ -40,7 +40,32 @@ export default async function Page({
     })
     .catch(() => notFound());
 
-  console.log("POST By UID", post);
+  const allPosts = await client.getAllByType("article", {
+    orderings: [
+      { field: "document.first_publication_date", direction: "desc" },
+    ],
+    filters: [prismic.filter.not("my.article.uid", post.uid)],
+    limit: 4,
+  });
+
+  let relatedPosts = await client.getBySomeTags(post.tags, {
+    filters: [prismic.filter.not("my.article.uid", post.uid)],
+  });
+
+  const result = [];
+
+  // if (post.tags.length) {
+  //   let relatedPosts = await client.getBySomeTags(post.tags, {
+  //     filters: [prismic.filter.not("document.uid", post.uid)],
+  //   });
+
+  //   if (relatedPosts.results?.length < 4) {
+  //   }
+  // } else {
+  // }
+
+  // console.log("POST By UID", post);
+  console.log("Related Posts", relatedPosts);
 
   return (
     <div className="flex flex-col w-5/6 h-full my-10 mx-auto">
