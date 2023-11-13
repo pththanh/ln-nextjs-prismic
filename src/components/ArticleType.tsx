@@ -1,7 +1,8 @@
+import { KeyTextField } from "@prismicio/client";
 import clsx from "clsx";
 
 type ArticleTypeProps = {
-  type: string;
+  type: undefined | KeyTextField;
   className?: string;
 };
 const ArticleType = ({ type, className }: ArticleTypeProps) => {

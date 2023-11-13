@@ -29,8 +29,8 @@ export default function Header({ lang }: HeaderProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const client = createClient();
-        const menuData = await client.getSingle("menu", { lang: lang });
+        const client = createClient({}, lang);
+        const menuData = await client.getSingle("menu");
         setMenu(menuData);
       } catch (error) {
         console.error("Error fetching menu:", error);
