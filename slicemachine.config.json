@@ -2,5 +2,5 @@
   "repositoryName": "ln-next-prismic",
   "adapter": "@slicemachine/adapter-next",
   "libraries": ["./src/slices"],
-  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"
+  "localSliceSimulatorURL": "https://ln-nextjs-prismic.vercel.app/slice-simulator"
 }
