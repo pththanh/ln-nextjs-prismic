@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ArticleDocumentDataSlicesSlice = ArticleImageSlice | QuoteSlice;
+type ArticleDocumentDataSlicesSlice =
+  | TextSlice
+  | ArticleImageSlice
+  | QuoteSlice;
 
 /**
  * Content for Article documents
@@ -659,6 +662,51 @@ export type CoverImageSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *HightLight → Primary*
+ */
+export interface HightLightSliceDefaultPrimary {
+  /**
+   * Content field in *HightLight → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hight_light.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for HightLight Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HightLightSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HightLightSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HightLight*
+ */
+type HightLightSliceVariation = HightLightSliceDefault;
+
+/**
+ * HightLight Shared Slice
+ *
+ * - **API ID**: `hight_light`
+ * - **Description**: HightLight
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HightLightSlice = prismic.SharedSlice<
+  "hight_light",
+  HightLightSliceVariation
+>;
+
+/**
  * Primary content in *Quote → Primary*
  */
 export interface QuoteSliceDefaultPrimary {
@@ -867,6 +915,10 @@ declare module "@prismicio/client" {
       CoverImageSliceDefaultPrimary,
       CoverImageSliceVariation,
       CoverImageSliceDefault,
+      HightLightSlice,
+      HightLightSliceDefaultPrimary,
+      HightLightSliceVariation,
+      HightLightSliceDefault,
       QuoteSlice,
       QuoteSliceDefaultPrimary,
       QuoteSliceQuoteWithoutIconPrimary,

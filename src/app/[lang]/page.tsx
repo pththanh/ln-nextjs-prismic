@@ -54,6 +54,7 @@ export default async function Page({ params }: { params: { lang: string } }) {
       "author.author_image",
       "author.author_name",
     ],
+    limit: 6,
   });
 
   return (

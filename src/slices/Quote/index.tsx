@@ -16,7 +16,7 @@ const Quote = ({ slice }: QuoteProps): JSX.Element => {
     <figure
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="max-w-screen-md mx-auto text-center"
+      className="relative max-w-screen-md mx-auto text-center my-10"
     >
       {slice.variation !== "quoteWithoutIcon" && (
         <svg

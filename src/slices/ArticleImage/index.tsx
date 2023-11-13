@@ -16,6 +16,7 @@ const ArticleImage = ({ slice }: ArticleImageProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="relative mt-10" 
     >
       <figure className="grid grid-cols-1 gap-4">
         {prismic.isFilled.image(slice.primary.article_image) && (
