@@ -4,7 +4,7 @@ import { PrismicImage } from "@prismicio/react";
 
 export type AuthorProps = {
   image?: ImageField;
-  name: KeyTextField;
+  name: KeyTextField | undefined;
   jobPosition?: KeyTextField;
 };
 

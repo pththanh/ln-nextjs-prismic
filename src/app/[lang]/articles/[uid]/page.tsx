@@ -7,9 +7,10 @@ import { BackButton } from "@/components/BackButton";
 import ArticleType from "@/components/ArticleType";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import { ArticleTypeDocument, AuthorDocument } from "../../../../../prismicio-types";
 
 interface TitlePostProps extends AuthorProps {
-  title: prismic.KeyTextField;
+  title: prismic.KeyTextField | undefined;
 }
 
 const TitlePost = ({ title, name, image }: TitlePostProps) => {
@@ -39,6 +40,17 @@ export default async function Page({
       ],
     })
     .catch(() => notFound());
+
+    const type = prismic.isFilled.contentRelationship<'article_type', string, ArticleTypeDocument['data']>(post.data.type) 
+    ? post.data.type.data?.type 
+    : undefined;
+
+    const author = prismic.isFilled.contentRelationship<'author', string, AuthorDocument['data']>(post.data.author_link) 
+    ? {
+        name: post.data.author_link.data?.author_name,
+        image: post.data.author_link.data?.author_image,
+      }
+    : undefined;
 
   const allPosts = await client.getAllByType("article", {
     orderings: [
@@ -74,16 +86,16 @@ export default async function Page({
         href={`/${params.lang}/`}
         className="mb-10"
       />
-      {prismic.isFilled.keyText(post.data.type.data.type) && (
+      {type && (
         <ArticleType
-          type={post.data.type.data.type}
+          type={type}
           className="relative w-max before:content-[''] before:absolute before:top-[-20px] before:right-[-15px] before:bg-white before:w-[30px] before:h-[30px] before:rotate-45"
         />
-      )}
+      )} 
       <TitlePost
         title={post.data.article_title}
-        name={post.data.author_link.data.author_name}
-        image={post.data.author_link.data.author_image}
+        name={author?.name}
+        image={author?.image}
       />
       <SliceZone slices={post.data.slices} components={components} />
     </div>
