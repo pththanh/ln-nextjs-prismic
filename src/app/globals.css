@@ -5,3 +5,7 @@
 .pb-custom {
   padding-bottom: 75%;
 }
+
+body{
+  position: relative;
+}

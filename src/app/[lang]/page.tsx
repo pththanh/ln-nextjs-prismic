@@ -7,6 +7,7 @@ import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import ArticleCard from "@/components/ArticleCard";
 import { Heading } from "@/components/Heading";
+import LoadingCircle from "@/components/LoadingCircle";
 
 type IntroduceProps = {
   image: prismic.ImageField;

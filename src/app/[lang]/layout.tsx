@@ -1,35 +1,8 @@
-import type { Metadata } from "next"; // dynamic metadata
-import clsx from "clsx";
-import { Nunito, Nunito_Sans } from "next/font/google";
 import { createClient } from "@/prismicio";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-export const nuntito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-});
-
-export const nuntinoSans = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito-sans",
-  display: "swap",
-});
-
-export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient({}, "en-us");
-
-  const settings = await client.getSingle("settings");
-
-  return {
-    title: settings.data.site_title || "Flowsite",
-    description: settings.data.meta_description || "Default Description",
-    openGraph: {
-      images: [settings.data.og_image.url || ""],
-    },
-  };
-}
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default function RootLayout({
   children,
@@ -41,12 +14,10 @@ export default function RootLayout({
   };
 }) {
   return (
-    <html lang="en">
-      <body className={clsx(nuntito.variable, nuntinoSans.variable)}>
-        <Header lang={params.lang} />
-        {children}
-        <Footer lang={params.lang} />
-      </body>
-    </html>
+    <>
+      <Header lang={params.lang} />
+      <Suspense fallback={<Loading />}>{children}</Suspense>
+      <Footer lang={params.lang} />
+    </>
   );
 }

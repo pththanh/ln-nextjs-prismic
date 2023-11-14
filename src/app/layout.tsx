@@ -3,9 +3,8 @@ import clsx from "clsx";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { createClient } from "@/prismicio";
-import { PrismicPreview } from '@prismicio/next'
-import { repositoryName } from '@/prismicio'
-
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 
 export const nuntito = Nunito({
   subsets: ["latin"],
@@ -25,7 +24,7 @@ export const nuntinoSans = Nunito_Sans({
 // };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient({},"en-us");
+  const client = createClient({}, "en-us");
 
   const settings = await client.getSingle("settings");
 

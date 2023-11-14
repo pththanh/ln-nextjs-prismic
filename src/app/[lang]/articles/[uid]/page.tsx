@@ -7,7 +7,11 @@ import { BackButton } from "@/components/BackButton";
 import ArticleType from "@/components/ArticleType";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
-import { ArticleTypeDocument, AuthorDocument } from "../../../../../prismicio-types";
+import {
+  ArticleTypeDocument,
+  AuthorDocument,
+} from "../../../../../prismicio-types";
+import useSelectLanguage from "@/hooks/useSelectLanguage";
 
 interface TitlePostProps extends AuthorProps {
   title: prismic.KeyTextField | undefined;
@@ -41,11 +45,19 @@ export default async function Page({
     })
     .catch(() => notFound());
 
-    const type = prismic.isFilled.contentRelationship<'article_type', string, ArticleTypeDocument['data']>(post.data.type) 
-    ? post.data.type.data?.type 
+  const type = prismic.isFilled.contentRelationship<
+    "article_type",
+    string,
+    ArticleTypeDocument["data"]
+  >(post.data.type)
+    ? post.data.type.data?.type
     : undefined;
 
-    const author = prismic.isFilled.contentRelationship<'author', string, AuthorDocument['data']>(post.data.author_link) 
+  const author = prismic.isFilled.contentRelationship<
+    "author",
+    string,
+    AuthorDocument["data"]
+  >(post.data.author_link)
     ? {
         name: post.data.author_link.data?.author_name,
         image: post.data.author_link.data?.author_image,
@@ -77,7 +89,7 @@ export default async function Page({
   // }
 
   // console.log("POST By UID", post);
-  console.log("Related Posts", relatedPosts);
+  // console.log("Related Posts", relatedPosts);
 
   return (
     <div className="flex flex-col w-5/6 h-full my-10 mx-auto">
@@ -91,7 +103,7 @@ export default async function Page({
           type={type}
           className="relative w-max before:content-[''] before:absolute before:top-[-20px] before:right-[-15px] before:bg-white before:w-[30px] before:h-[30px] before:rotate-45"
         />
-      )} 
+      )}
       <TitlePost
         title={post.data.article_title}
         name={author?.name}
