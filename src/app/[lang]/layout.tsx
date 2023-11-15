@@ -1,9 +1,9 @@
-import type { Metadata } from "next"; // dynamic metadata
+import type { Metadata, ResolvingMetadata } from "next"; // dynamic metadata
 import clsx from "clsx";
 import { Nunito, Nunito_Sans } from "next/font/google";
-import { createClient } from "@/prismicio";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { createClient } from "@/prismicio";
 
 export const nuntito = Nunito({
   subsets: ["latin"],
@@ -17,29 +17,39 @@ export const nuntinoSans = Nunito_Sans({
   display: "swap",
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient({}, "en-us");
-
-  const settings = await client.getSingle("settings");
-
-  return {
-    title: settings.data.site_title || "Flowsite",
-    description: settings.data.meta_description || "Default Description",
-    openGraph: {
-      images: [settings.data.og_image.url || ""],
-    },
-  };
-}
-
-export default function RootLayout({
-  children,
-  params,
-}: {
+type RootLayoutProps = {
   children: React.ReactNode;
   params: {
     lang: string;
   };
-}) {
+};
+
+type MetaDataProps = {
+  params: { lang: string; uid: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: MetaDataProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  console.log({
+    params,
+    searchParams,
+  });
+
+  const client = createClient({}, params.lang);
+
+  return {
+    title: "Title",
+    description: "Default Description",
+    openGraph: {
+      images: [""],
+    },
+  };
+}
+
+export default function RootLayout({ children, params }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={clsx(nuntito.variable, nuntinoSans.variable)}>

@@ -1,11 +1,10 @@
-import type { Metadata } from "next"; // dynamic metadata
+import type { Metadata, ResolvingMetadata } from "next";
 import clsx from "clsx";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { createClient } from "@/prismicio";
-import { PrismicPreview } from '@prismicio/next'
-import { repositoryName } from '@/prismicio'
-
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 
 export const nuntito = Nunito({
   subsets: ["latin"],
@@ -19,21 +18,27 @@ export const nuntinoSans = Nunito_Sans({
   display: "swap",
 });
 
-// export const metadata: Metadata = {
-//   title: "Next x Prismic",
-//   description: "Next x Prismic",
-// };
+type MetaDataProps = {
+  params: { lang: string; uid: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient({},"en-us");
+export async function generateMetadata(
+  { params, searchParams }: MetaDataProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  console.log({
+    params,
+    searchParams,
+  });
 
-  const settings = await client.getSingle("settings");
+  const client = createClient({}, params.lang);
 
   return {
-    title: settings.data.site_title || "Flowsite",
-    description: settings.data.meta_description || "Default Description",
+    title: "Title",
+    description: "Default Description",
     openGraph: {
-      images: [settings.data.og_image.url || ""],
+      images: [""],
     },
   };
 }
