@@ -97,8 +97,8 @@ const SignUpForm = ({
 };
 
 export default async function Footer({ lang }: FooterProps) {
-  const client = createClient({}, lang);
-  const footer = await client.getSingle("footer");
+  const client = createClient();
+  const footer = await client.getSingle("footer", {lang: lang});
 
   return (
     <footer className="flex flex-col justify-center items-center px-10 py-10">

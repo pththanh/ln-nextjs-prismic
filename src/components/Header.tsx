@@ -4,6 +4,8 @@ import useScrollDirection from "@/hooks/useScrollDirection";
 import { createClient } from "@/prismicio";
 import { MenuDocument } from "../../prismicio-types";
 import { PrismicNextLink } from "@prismicio/next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { getLocales } from "@/app/lib/getLocales";
 
 type NavItemProps = {
   children: React.ReactNode;
@@ -24,13 +26,16 @@ const NavItem = ({ children }: NavItemProps) => {
 
 export default function Header({ lang }: HeaderProps) {
   const [menu, setMenu] = useState<MenuDocument<string>>();
+  const [locales, setLocales] = useState([{ lang: "", lang_name: "" }]);
   const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const client = createClient({}, lang);
-        const menuData = await client.getSingle("menu");
+        const client = createClient();
+        const menuData = await client.getSingle("menu", { lang: lang });
+        const locales = await getLocales(menuData, client);
+        setLocales(locales);
         setMenu(menuData);
       } catch (error) {
         console.error("Error fetching menu:", error);
@@ -55,7 +60,7 @@ export default function Header({ lang }: HeaderProps) {
           ))}
         </ul>
         <div className="text-xl absolute top-1/2 right-5 transform -translate-x-1/2 -translate-y-1/2">
-          {menu?.data.language?.toUpperCase()}
+          <LanguageSwitcher locales={locales} currentLang={lang} />
         </div>
       </nav>
     </header>
