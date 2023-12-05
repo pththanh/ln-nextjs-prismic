@@ -43,9 +43,12 @@ const Introduce = ({ image, text, bgColor }: IntroduceProps) => {
 };
 
 export default async function Page({ params }: { params: { lang: string } }) {
-  const client = createClient({}, params.lang);
-  const home = await client.getSingle("home").catch(() => notFound());
+  const client = createClient();
+  const home = await client
+    .getSingle("home", { lang: params.lang })
+    .catch(() => notFound());
   const articles = await client.getAllByType("article", {
+    lang: params.lang,
     orderings: [
       { field: "document.first_publication_date", direction: "desc" },
     ],

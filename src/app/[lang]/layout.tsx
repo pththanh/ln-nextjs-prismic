@@ -4,6 +4,7 @@ import { Nunito, Nunito_Sans } from "next/font/google";
 import { createClient } from "@/prismicio";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { getLocales } from "../lib/getLocales";
 
 export const nuntito = Nunito({
   subsets: ["latin"],
@@ -18,7 +19,7 @@ export const nuntinoSans = Nunito_Sans({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient({}, "en-us");
+  const client = createClient();
 
   const settings = await client.getSingle("settings");
 
@@ -40,10 +41,11 @@ export default function RootLayout({
     lang: string;
   };
 }) {
+
   return (
     <html lang="en">
       <body className={clsx(nuntito.variable, nuntinoSans.variable)}>
-        <Header lang={params.lang} />
+        <Header lang={params.lang}/>
         {children}
         <Footer lang={params.lang} />
       </body>

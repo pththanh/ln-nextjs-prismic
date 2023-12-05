@@ -37,13 +37,10 @@ const routes: prismic.ClientConfig["routes"] = [
  */
 export const createClient = (
   config: prismicNext.CreateClientConfig = {},
-  lang: string
 ) => {
   const client = prismic.createClient(repositoryName, {
     routes,
-    defaultParams: {
-      lang: lang,
-    },
+    accessToken: process.env.DB_ACCESS_TOKEN,
     fetchOptions:
       process.env.NODE_ENV === "production"
         ? { next: { tags: ["prismic"] }, cache: "force-cache" }
