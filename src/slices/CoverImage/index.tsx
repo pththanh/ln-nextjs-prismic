@@ -1,5 +1,6 @@
 import { Content } from "@prismicio/client";
-import { PrismicImage, SliceComponentProps } from "@prismicio/react";
+import { PrismicNextImage } from '@prismicio/next'
+import { SliceComponentProps } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
 import clsx from "clsx";
 
@@ -20,7 +21,7 @@ const CoverImage = ({ slice }: CoverImageProps): JSX.Element => {
         className="relative h-screen"
       >
         {prismic.isFilled.image(slice.primary.main_image) && (
-          <PrismicImage
+          <PrismicNextImage
             field={slice.primary.main_image}
             className="absolute top-0 left-0 h-full	w-full object-cover"
           />

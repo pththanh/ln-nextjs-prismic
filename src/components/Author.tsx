@@ -1,6 +1,6 @@
 import { ImageField, KeyTextField } from "@prismicio/client";
 import * as prismic from "@prismicio/client";
-import { PrismicImage } from "@prismicio/react";
+import { PrismicNextImage } from '@prismicio/next'
 
 export type AuthorProps = {
   image?: ImageField;
@@ -14,7 +14,7 @@ const Author = ({ image, name, jobPosition }: AuthorProps) => {
       <div className="flex gap-2 justify-start items-center mt-5">
         {prismic.isFilled.image(image) && (
           <div className="w-[50px] h-[50px] rounded-[50%] overflow-hidden">
-            <PrismicImage
+            <PrismicNextImage
               field={image}
               className="w-full h-full object-cover"
             />

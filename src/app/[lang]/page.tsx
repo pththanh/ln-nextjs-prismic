@@ -1,5 +1,6 @@
 import { createClient } from "@/prismicio";
-import { PrismicImage, PrismicRichText } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
+import { PrismicNextImage } from '@prismicio/next'
 import { notFound } from "next/navigation";
 import * as prismic from "@prismicio/client";
 import React from "react";
@@ -21,7 +22,7 @@ const Introduce = ({ image, text, bgColor }: IntroduceProps) => {
       style={{ backgroundColor: bgColor ?? "" }}
     >
       <div className="w-3/5">
-        <PrismicImage field={image} />
+        <PrismicNextImage field={image} />
       </div>
       <div className="w-2/5 text-center">
         {prismic.isFilled.richText(text) && (
