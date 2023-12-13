@@ -1,4 +1,4 @@
-import { PrismicImage } from "@prismicio/react";
+import { PrismicNextImage } from '@prismicio/next'
 import React from "react";
 import Badge from "./Badge";
 import { DateField, KeyTextField, LinkField } from "@prismicio/client";
@@ -40,14 +40,14 @@ const ArticleCard = ({
       <div className="relative w-full h-0 pb-custom">
         {isExternalHref ? (
           <PrismicNextLink field={externalHref} target="_blank" rel={undefined}>
-            <PrismicImage
+            <PrismicNextImage
               field={image}
               className="absolute inset w-full h-full object-cover rounded-t-lg cursor-pointer"
             />
           </PrismicNextLink>
         ) : (
           <PrismicNextLink document={href} rel={undefined}>
-            <PrismicImage
+            <PrismicNextImage
               field={image}
               className="absolute inset w-full h-full object-cover rounded-t-lg cursor-pointer"
             />
