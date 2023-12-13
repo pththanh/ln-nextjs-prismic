@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/prismicio";
 
 export async function middleware(request: NextRequest) {
+  
+  const excludedPath = "/slice-machine";
+  if (request.nextUrl.pathname.startsWith(excludedPath)) {
+    return null; // Skip middleware logic for the excluded path
+  }
   const client = createClient();
   const repository = await client.getRepository();
 
