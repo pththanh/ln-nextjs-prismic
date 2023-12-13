@@ -69,6 +69,17 @@
           "label": "Background Color",
           "placeholder": ""
         }
+      },
+      "slices2": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "quote": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }

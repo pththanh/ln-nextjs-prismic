@@ -278,6 +278,8 @@ export type FooterDocument<Lang extends string = string> =
 
 type HomeDocumentDataSlicesSlice = CoverImageSlice;
 
+type HomeDocumentDataSlices2Slice = QuoteSlice;
+
 /**
  * Content for Home documents
  */
@@ -354,6 +356,17 @@ interface HomeDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#color
    */
   background_color: prismic.ColorField;
+
+  /**
+   * Slice Zone field in *Home*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.slices2[]
+   * - **Tab**: Introduce
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices2: prismic.SliceZone<HomeDocumentDataSlices2Slice>;
 }
 
 /**
@@ -900,6 +913,7 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      HomeDocumentDataSlices2Slice,
       MenuDocument,
       MenuDocumentData,
       MenuDocumentDataNavigationItem,
