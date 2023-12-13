@@ -6,13 +6,13 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer";
 import { getLocales } from "../lib/getLocales";
 
-export const nuntito = Nunito({
+const nuntito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",
   display: "swap",
 });
 
-export const nuntinoSans = Nunito_Sans({
+const nuntinoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-nunito-sans",
   display: "swap",

@@ -7,13 +7,13 @@ import { PrismicPreview } from '@prismicio/next'
 import { repositoryName } from '@/prismicio'
 
 
-export const nuntito = Nunito({
+const nuntito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",
   display: "swap",
 });
 
-export const nuntinoSans = Nunito_Sans({
+const nuntinoSans = Nunito_Sans({
   subsets: ["latin"],
   variable: "--font-nunito-sans",
   display: "swap",
