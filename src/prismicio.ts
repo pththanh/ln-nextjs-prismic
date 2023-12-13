@@ -40,7 +40,7 @@ export const createClient = (
 ) => {
   const client = prismic.createClient(repositoryName, {
     routes,
-    accessToken: process.env.DB_ACCESS_TOKEN,
+    // accessToken: process.env.DB_ACCESS_TOKEN,
     fetchOptions:
       process.env.NODE_ENV === "production"
         ? { next: { tags: ["prismic"] }, cache: "force-cache" }
