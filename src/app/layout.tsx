@@ -3,9 +3,9 @@ import clsx from "clsx";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { createClient } from "@/prismicio";
-import { PrismicPreview } from '@prismicio/next'
-import { repositoryName } from '@/prismicio'
-
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
+import GoogleAnalyticsTracking from "@/components/GoogleAnalyticsTracking";
 
 const nuntito = Nunito({
   subsets: ["latin"],
@@ -45,6 +45,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <GoogleAnalyticsTracking />
       <body className={clsx(nuntito.variable, nuntinoSans.variable)}>
         {children}
         <PrismicPreview repositoryName={repositoryName} />
