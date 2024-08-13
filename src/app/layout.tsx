@@ -1,11 +1,11 @@
 import type { Metadata } from "next"; // dynamic metadata
-import clsx from "clsx";
-import { Nunito, Nunito_Sans, Lora } from "next/font/google";
+import { Lora } from "next/font/google";
 import "./globals.css";
 import { createClient } from "@/prismicio";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import GoogleAnalyticsTracking from "@/components/GoogleAnalyticsTracking";
+import { cn } from "@/utils/lib/util";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleAnalyticsTracking />
-      <body className={clsx(lora.variable)}>
+      <body className={cn(lora.variable)}>
         {children}
         <PrismicPreview repositoryName={repositoryName} />
       </body>

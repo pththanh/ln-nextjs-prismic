@@ -1,5 +1,5 @@
+import { cn } from "@/utils/lib/util";
 import { KeyTextField } from "@prismicio/client";
-import clsx from "clsx";
 
 type ArticleTypeProps = {
   type: undefined | KeyTextField;
@@ -7,7 +7,7 @@ type ArticleTypeProps = {
 };
 const ArticleType = ({ type, className }: ArticleTypeProps) => {
   return (
-    <div className={clsx(" py-2 px-6 bg-black text-white", className)}>
+    <div className={cn(" py-2 px-6 bg-black text-white", className)}>
       {type}
     </div>
   );
