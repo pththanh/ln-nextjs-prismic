@@ -1,21 +1,15 @@
 import type { Metadata } from "next"; // dynamic metadata
 import clsx from "clsx";
-import { Nunito, Nunito_Sans } from "next/font/google";
+import { Nunito, Nunito_Sans, Lora } from "next/font/google";
 import "./globals.css";
 import { createClient } from "@/prismicio";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import GoogleAnalyticsTracking from "@/components/GoogleAnalyticsTracking";
 
-const nuntito = Nunito({
+const lora = Lora({
   subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-});
-
-const nuntinoSans = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito-sans",
+  variable: "--font-lora",
   display: "swap",
 });
 
@@ -46,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleAnalyticsTracking />
-      <body className={clsx(nuntito.variable, nuntinoSans.variable)}>
+      <body className={clsx(lora.variable)}>
         {children}
         <PrismicPreview repositoryName={repositoryName} />
       </body>
