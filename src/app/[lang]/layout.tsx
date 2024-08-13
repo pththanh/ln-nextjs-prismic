@@ -1,20 +1,14 @@
 import type { Metadata } from "next"; // dynamic metadata
 import clsx from "clsx";
-import { Nunito, Nunito_Sans } from "next/font/google";
+import { Lora } from "next/font/google";
 import { createClient } from "@/prismicio";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer";
 import { getLocales } from "../lib/getLocales";
 
-const nuntito = Nunito({
+const lora = Lora({
   subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-});
-
-const nuntinoSans = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito-sans",
+  variable: "--font-lora",
   display: "swap",
 });
 
@@ -43,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(nuntito.variable, nuntinoSans.variable)}>
+      <body className={clsx("font-body", lora.variable)}>
         <Header lang={params.lang} />
         {children}
         <Footer lang={params.lang} />
