@@ -1,8 +1,7 @@
 import { Content } from "@prismicio/client";
-import { PrismicNextImage } from '@prismicio/next'
+import { PrismicNextImage } from "@prismicio/next";
 import { SliceComponentProps } from "@prismicio/react";
 import * as prismic from "@prismicio/client";
-import clsx from "clsx";
 
 /**
  * Props for `CoverImage`.

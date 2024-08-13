@@ -1,10 +1,10 @@
 import type { Metadata } from "next"; // dynamic metadata
-import clsx from "clsx";
 import { Lora } from "next/font/google";
 import { createClient } from "@/prismicio";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer";
 import { getLocales } from "../lib/getLocales";
+import { cn } from "@/utils/lib/util";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx("font-body", lora.variable)}>
+      <body className={cn("font-body", lora.variable)}>
         <Header lang={params.lang} />
         {children}
         <Footer lang={params.lang} />

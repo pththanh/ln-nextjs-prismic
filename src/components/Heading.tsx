@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/utils/lib/util";
 
 type HeadingProps = {
   as: keyof JSX.IntrinsicElements;
@@ -15,7 +15,7 @@ export const Heading = ({
 }: HeadingProps) => {
   return (
     <Comp
-      className={clsx(
+      className={cn(
         "font-sans font-semibold tracking-tighter text-slate-800",
         size === "4xl" && "text-3xl md:text-4xl",
         size === "3xl" && "text-3xl",
