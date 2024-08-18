@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
-import { PrismicNextImage } from '@prismicio/next'
+import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
 import * as prismic from "@prismicio/client";
 import React from "react";
@@ -8,6 +8,8 @@ import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import ArticleCard from "@/components/ArticleCard";
 import { Heading } from "@/components/Heading";
+import SpecialCard from "@/components/SpecialCard";
+import { flattenArtilce } from "@/utils/Article";
 
 type IntroduceProps = {
   image: prismic.ImageField;
@@ -48,7 +50,7 @@ export default async function Page({ params }: { params: { lang: string } }) {
   const home = await client
     .getSingle("home", { lang: params.lang })
     .catch(() => notFound());
-  const articles = await client.getAllByType("article", {
+  const articlesData = await client.getAllByType("article", {
     lang: params.lang,
     orderings: [
       { field: "document.first_publication_date", direction: "desc" },
@@ -61,32 +63,22 @@ export default async function Page({ params }: { params: { lang: string } }) {
     limit: 6,
   });
 
+  const articles = flattenArtilce(articlesData);
+
   return (
     <>
       <SliceZone slices={home.data.slices} components={components} />
-      <Introduce
+      <SpecialCard
+        primaryCard={articles[1]}
+        secondaryCard={[articles[2], articles[3]]}
+      />
+      {/* <Introduce
         image={home.data.introduce_image}
         text={home.data.introduce_text}
         bgColor={home.data.background_color}
-      />
+      /> */}
       <div className="grid grid-cols-2 gap-2 mx-10 2xl:grid-cols-3 2xl:gap-5">
-        {articles?.map((item, index) => (
-          <ArticleCard
-            type={item.data.type}
-            title={item.data.article_title}
-            image={item.data.article_image}
-            createdAt={item.data.created_date}
-            tags={item.tags}
-            content={item.data.content}
-            authorImage={item.data.author_link}
-            authorName={item.data.author_link}
-            timeToRead={item.data.time_to_read}
-            href={item}
-            externalHref={item.data.article_link}
-            isExternalHref={item.data.article_link.link_type === "Web"}
-            key={index}
-          />
-        ))}
+        {articles?.map((item, index) => <ArticleCard {...item} key={index} />)}
       </div>
     </>
   );

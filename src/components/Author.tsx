@@ -1,17 +1,28 @@
+import { cn } from "@/utils/lib/util";
 import { ImageField, KeyTextField } from "@prismicio/client";
 import * as prismic from "@prismicio/client";
-import { PrismicNextImage } from '@prismicio/next'
+import { PrismicNextImage } from "@prismicio/next";
 
 export type AuthorProps = {
   image?: ImageField;
   name: KeyTextField | undefined;
   jobPosition?: KeyTextField;
+  className?: {
+    wrapper?: string;
+    name?: string;
+    jobPostion?: string;
+  };
 };
 
-const Author = ({ image, name, jobPosition }: AuthorProps) => {
+const Author = ({ image, name, jobPosition, className }: AuthorProps) => {
   return (
     <section>
-      <div className="flex gap-2 justify-start items-center mt-5">
+      <div
+        className={cn(
+          "flex gap-2 justify-start items-center mt-5",
+          className?.wrapper
+        )}
+      >
         {prismic.isFilled.image(image) && (
           <div className="w-[50px] h-[50px] rounded-[50%] overflow-hidden">
             <PrismicNextImage
@@ -21,8 +32,16 @@ const Author = ({ image, name, jobPosition }: AuthorProps) => {
           </div>
         )}
         <div className={`${jobPosition ? "divide-x-2 divide-gray-500" : ""}`}>
-          <cite className="pr-2 font-medium text-gray-900">{name}</cite>
-          <cite className="pl-2 text-sm text-gray-500">{jobPosition}</cite>
+          <cite
+            className={cn("pr-2 font-medium text-gray-900", className?.name)}
+          >
+            {name}
+          </cite>
+          <cite
+            className={cn("pl-2 text-sm text-gray-500", className?.jobPostion)}
+          >
+            {jobPosition}
+          </cite>
         </div>
       </div>
     </section>
