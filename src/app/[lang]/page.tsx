@@ -10,6 +10,7 @@ import ArticleCard from "@/components/ArticleCard";
 import { Heading } from "@/components/Heading";
 import SpecialCard from "@/components/SpecialCard";
 import { flattenArtilce } from "@/utils/Article";
+import HightLightBlock from "@/components/HightLightBlock";
 
 type IntroduceProps = {
   image: prismic.ImageField;
@@ -68,6 +69,7 @@ export default async function Page({ params }: { params: { lang: string } }) {
   return (
     <>
       <SliceZone slices={home.data.slices} components={components} />
+      <HightLightBlock {...articles[1]} />
       <SpecialCard
         primaryCard={articles[1]}
         secondaryCard={[articles[2], articles[3]]}
