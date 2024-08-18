@@ -24,7 +24,7 @@ export const LanguageSwitcher = ({
 
   return (
     <div className="flex flex-wrap gap-3">
-      <ul className="flex flex-wrap gap-3">
+      <ul className="flex flex-wrap gap-3 text-[18px]">
         {locales?.map(
           (locale) =>
             locale.lang !== currentLang && (

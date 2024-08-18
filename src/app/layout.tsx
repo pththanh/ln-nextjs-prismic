@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleAnalyticsTracking />
-      <body className={cn(lora.variable)}>
+      <body className={cn("font-body", lora.variable)}>
         {children}
         <PrismicPreview repositoryName={repositoryName} />
       </body>

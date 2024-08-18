@@ -1,12 +1,17 @@
-import { PrismicNextImage } from '@prismicio/next'
+import { PrismicNextImage } from "@prismicio/next";
 import React from "react";
 import Badge from "./Badge";
-import { DateField, KeyTextField, LinkField } from "@prismicio/client";
+import {
+  DateField,
+  KeyTextField,
+  LinkField,
+  PrismicDocument,
+} from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import Author from "./Author";
 import ArticleType from "./ArticleType";
 
-type ArticleCardProps = {
+export type ArticleCardProps = {
   type?: any;
   title: KeyTextField;
   createdAt?: DateField | string;
