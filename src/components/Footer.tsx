@@ -5,6 +5,11 @@ import * as prismic from "@prismicio/client";
 import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { Heading } from "./Heading";
 import { HorizontalDivider } from "./HorizontalDivider";
+import FacebookIcon from "./Icons/FacebookIcon";
+import InstagramIcon from "./Icons/InstagramIcon";
+import GithubIcon from "./Icons/GithubIcon";
+import LinkedInIcon from "./Icons/LinkedInIcon";
+import { PrismicNextLink } from "@prismicio/next";
 
 type FooterProps = {
   lang: string;
@@ -17,12 +22,29 @@ type SignUpProps = {
   placeholder: KeyTextField;
 };
 
+const SocialIcon = ({ platform }: { platform: prismic.KeyTextField }) => {
+  switch (platform) {
+    case "Facebook": {
+      return <FacebookIcon height={20} width={20} />;
+    }
+    case "Instagram": {
+      return <InstagramIcon height={20} width={20} />;
+    }
+    case "Github": {
+      return <GithubIcon height={20} width={20} />;
+    }
+    case "LinkedIn": {
+      return <LinkedInIcon height={20} width={20} />;
+    }
+  }
+};
+
 const CoppyRight = ({ text }: { text: KeyTextField }) => {
   const currentDay = new Date();
   return (
     <div className="pt-10">
       <p>
-        @{currentDay.getFullYear()} {text}
+        @{currentDay.getFullYear()} - {text}
       </p>
     </div>
   );
@@ -98,19 +120,73 @@ const SignUpForm = ({
 
 export default async function Footer({ lang }: FooterProps) {
   const client = createClient();
-  const footer = await client.getSingle("footer", {lang: lang});
+  const footer = await client.getSingle("footer", { lang: lang });
+
+  // Assume these are coming from the Prismic data
+  const blogName = footer.data.blog_name;
+  const blogDescription = footer.data.blog_description;
+
+  const socialLinks = footer.data.social_links;
+  const quickLinks = footer.data.quick_links;
 
   return (
-    <footer className="flex flex-col justify-center items-center px-10 py-10">
-      <HorizontalDivider />
-      <SignUpForm
-        title={footer.data.newsletter_title}
-        description={footer.data.newsletter_description}
-        disclaimer={footer.data.newsletter_disclaimer}
-        placeholder={footer.data.place_holder}
-      />
-      <HorizontalDivider />
-      <CoppyRight text={footer.data.coppy_right} />
+    <footer className="bg-white py-12 px-4 sm:px-6 lg:px-8 lg:mt-[100px]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-20">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">{blogName}</h2>
+          <p className="text-gray-600 mb-4">{blogDescription}</p>
+          <form className="flex">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <button
+              type="submit"
+              className="bg-red-500 text-white px-4 py-2 rounded-r-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+          <div className="flex space-x-4">
+            {socialLinks.map((link, index) => (
+              <PrismicNextLink
+                field={link.social_link}
+                target="_blank"
+                rel={undefined}
+                key={index}
+                className="text-gray-400 hover:text-gray-500"
+              >
+                <SocialIcon platform={link.social_name} />
+              </PrismicNextLink>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul className="space-y-2">
+            {quickLinks.map((link, index) => (
+              <li key={index} className="pl-[10px]">
+                {/* <Link
+                  href={link.url}
+                  className="text-gray-600 hover:text-gray-800"
+                > */}
+                {link.quick_name}
+                {/* </Link> */}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500">
+        <CoppyRight text={footer.data.coppy_right} />
+      </div>
     </footer>
   );
 }
