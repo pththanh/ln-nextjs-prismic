@@ -201,6 +201,56 @@ export type AuthorDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<AuthorDocumentData>, "author", Lang>;
 
 /**
+ * Item in *Footer → Social Links*
+ */
+export interface FooterDocumentDataSocialLinksItem {
+  /**
+   * Social Name field in *Footer → Social Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.social_links[].social_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  social_name: prismic.KeyTextField;
+
+  /**
+   * Social Link field in *Footer → Social Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.social_links[].social_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  social_link: prismic.LinkField;
+}
+
+/**
+ * Item in *Footer → Quick Links*
+ */
+export interface FooterDocumentDataQuickLinksItem {
+  /**
+   * Quick Name field in *Footer → Quick Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.quick_links[].quick_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  quick_name: prismic.KeyTextField;
+
+  /**
+   * Quick Link field in *Footer → Quick Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.quick_links[].quick_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  quick_link: prismic.LinkField;
+}
+
+/**
  * Content for Footer documents
  */
 interface FooterDocumentData {
@@ -258,6 +308,50 @@ interface FooterDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   coppy_right: prismic.KeyTextField;
+
+  /**
+   * Blog Name field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.blog_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  blog_name: prismic.KeyTextField;
+
+  /**
+   * Blog Description field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.blog_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  blog_description: prismic.KeyTextField;
+
+  /**
+   * Social Links field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.social_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social_links: prismic.GroupField<Simplify<FooterDocumentDataSocialLinksItem>>;
+
+  /**
+   * Quick Links field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.quick_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  quick_links: prismic.GroupField<Simplify<FooterDocumentDataQuickLinksItem>>;
 }
 
 /**
@@ -910,6 +1004,8 @@ declare module "@prismicio/client" {
       AuthorDocumentData,
       FooterDocument,
       FooterDocumentData,
+      FooterDocumentDataSocialLinksItem,
+      FooterDocumentDataQuickLinksItem,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,

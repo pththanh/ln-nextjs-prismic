@@ -28,8 +28,10 @@ const Card = ({
             className="absolute inset w-full h-full object-cover cursor-pointer"
           />
         </PrismicNextLink>
-        <div className="absolute bottom-0 left-0 pb-[20px] pl-[20px]  w-full">
+        <div className="absolute top-0 left-0">
           <ArticleType type={type?.data.type} className="w-min" />
+        </div>
+        <div className="absolute bottom-0 left-0 pb-[20px] pl-[20px] w-full bg-slate-900 bg-opacity-50">
           <span className="line-clamp-2 absolute mx-auto py-4 flex border w-fit bg-gradient-to-r blur-xl from-black via-slate-600 to-slate-900 bg-clip-text text-2xl box-content font-extrabold text-transparent select-none">
             {title}
           </span>

@@ -46,6 +46,66 @@
           "label": "Coppy Right",
           "placeholder": ""
         }
+      },
+      "blog_name": {
+        "type": "Text",
+        "config": {
+          "label": "Blog Name",
+          "placeholder": ""
+        }
+      },
+      "blog_description": {
+        "type": "Text",
+        "config": {
+          "label": "Blog Description",
+          "placeholder": ""
+        }
+      },
+      "social_links": {
+        "type": "Group",
+        "config": {
+          "label": "Social Links",
+          "fields": {
+            "social_name": {
+              "type": "Text",
+              "config": {
+                "label": "Social Name",
+                "placeholder": ""
+              }
+            },
+            "social_link": {
+              "type": "Link",
+              "config": {
+                "label": "Social Link",
+                "placeholder": "",
+                "select": null
+              }
+            }
+          }
+        }
+      },
+      "quick_links": {
+        "type": "Group",
+        "config": {
+          "label": "Quick Links",
+          "fields": {
+            "quick_name": {
+              "type": "Text",
+              "config": {
+                "label": "Quick Name",
+                "placeholder": ""
+              }
+            },
+            "quick_link": {
+              "type": "Link",
+              "config": {
+                "label": "Quick Link",
+                "placeholder": "",
+                "select": null
+              }
+            }
+          }
+        }
       }
     }
   }

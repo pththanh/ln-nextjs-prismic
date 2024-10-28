@@ -69,7 +69,7 @@ export default async function Page({ params }: { params: { lang: string } }) {
   return (
     <>
       <SliceZone slices={home.data.slices} components={components} />
-      <HightLightBlock {...articles[1]} />
+      <HightLightBlock items={[articles[1], articles[2], articles[3]]} />
       <SpecialCard
         primaryCard={articles[1]}
         secondaryCard={[articles[2], articles[3]]}
