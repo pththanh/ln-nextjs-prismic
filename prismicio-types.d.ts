@@ -736,6 +736,17 @@ export interface CoverImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#color
    */
   color: prismic.ColorField;
+
+  /**
+   * Has Animation field in *CoverImage → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: cover_image.primary.has_animation
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  has_animation: prismic.BooleanField;
 }
 
 /**

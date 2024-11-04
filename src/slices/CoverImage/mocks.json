@@ -83,6 +83,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "#67186d",
 				"type": "Color"
+			},
+			"has_animation": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []
