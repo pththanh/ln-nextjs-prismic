@@ -54,6 +54,15 @@
             "label": "Color",
             "placeholder": ""
           }
+        },
+        "has_animation": {
+          "type": "Boolean",
+          "config": {
+            "label": "Has Animation",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}
